@@ -1,6 +1,6 @@
-import { Server } from 'net'
-import { INestApplication } from '@nestjs/common'
-import { ServeStaticOptions } from './adapter'
+import { Server } from 'net';
+import { INestApplication } from '@nestjs/common';
+import { ServeStaticOptions } from './serve-static-option.interface';
 
 /**
  * Interface describing methods on NestRestanaApplication.
@@ -18,8 +18,12 @@ export interface NestRestanaApplication extends INestApplication {
    * @param {Function} [callback] Optional callback
    * @returns {Promise} A Promise that, when resolved, is a reference to the underlying HttpServer.
    */
-  listen(port: number | string, callback?: () => void): Promise<Server>
-  listen(port: number | string, hostname: string, callback?: () => void): Promise<Server>
+  listen(port: number | string, callback?: () => void): Promise<Server>;
+  listen(
+    port: number | string,
+    hostname: string,
+    callback?: () => void,
+  ): Promise<Server>;
 
   /**
    * A wrapper function around native `Restana.set()` method.
@@ -29,7 +33,7 @@ export interface NestRestanaApplication extends INestApplication {
    *
    * @returns {this}
    */
-  set(...args: any[]): this
+  set(...args: any[]): this;
 
   /**
    * A wrapper function around native `Restana.engine()` method.
@@ -38,7 +42,7 @@ export interface NestRestanaApplication extends INestApplication {
    *
    * @returns {this}
    */
-  engine(...args: any[]): this
+  engine(...args: any[]): this;
 
   /**
    * A wrapper function around native `Restana.enable()` method.
@@ -47,7 +51,7 @@ export interface NestRestanaApplication extends INestApplication {
    *
    * @returns {this}
    */
-  enable(...args: any[]): this
+  enable(...args: any[]): this;
 
   /**
    * A wrapper function around native `Restana.disable()` method.
@@ -57,8 +61,7 @@ export interface NestRestanaApplication extends INestApplication {
    *
    * @returns {this}
    */
-  disable(...args: any[]): this
-
+  disable(...args: any[]): this;
 
   /**
    * Sets a base directory for public assets.
@@ -67,7 +70,7 @@ export interface NestRestanaApplication extends INestApplication {
    *
    * @returns {this}
    */
-  useStaticAssets(path: string, options?: ServeStaticOptions): this
+  useStaticAssets(path: string, options?: ServeStaticOptions): this;
 
   /**
    * Sets one or multiple base directories for templates (views).
@@ -77,7 +80,7 @@ export interface NestRestanaApplication extends INestApplication {
    *
    * @returns {this}
    */
-  setBaseViewsDir(path: string | string[]): this
+  setBaseViewsDir(path: string | string[]): this;
 
   /**
    * Sets a view engine for templates (views).
@@ -86,7 +89,7 @@ export interface NestRestanaApplication extends INestApplication {
    *
    * @returns {this}
    */
-  setViewEngine(engine: string): this
+  setViewEngine(engine: string): this;
 
   /**
    * Sets app-level globals for view templates.
@@ -98,5 +101,5 @@ export interface NestRestanaApplication extends INestApplication {
    *
    * @returns {this}
    */
-  setLocal(key: string, value: any): this
+  setLocal(key: string, value: any): this;
 }

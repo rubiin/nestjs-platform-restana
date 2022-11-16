@@ -1,6 +1,6 @@
 {
   "name": "nestjs-platform-restana",
-  "version": "0.0.1",
+  "version": "0.0.6",
   "description": "Restana adapter for nestjs",
   "author": "Rubin Bhandari",
   "license": "MIT",
@@ -30,7 +30,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "restana": "^4.9.6",
-    "sirv": "^2.0.2"
+    "serve-static": "^1.15.0"
   },
   "devDependencies": {
     "@nestjs/common": "^9.2.0",
