@@ -95,22 +95,26 @@ export class RestanaHttpAdapter extends AbstractHttpAdapter {
   public listen(port: any, ...args: any[]) {
     return this.httpServer.listen(port, ...args);
   }
+
   public close() {
+    this.closeOpenConnections();
+
     if (!this.httpServer) {
       return undefined;
     }
     return new Promise((resolve) => this.httpServer.close(resolve));
   }
+
   public set(...args: any[]) {
-    return this.instance.set(...args);
+    throw new Error('Not implemented');
   }
 
   public enable(...args: any[]) {
-    return this.instance.enable(...args);
+    throw new Error('Not implemented');
   }
 
   public disable(...args: any[]) {
-    return this.instance.disable(...args);
+    throw new Error('Not implemented');
   }
 
   public engine(...args: any[]) {
@@ -127,11 +131,11 @@ export class RestanaHttpAdapter extends AbstractHttpAdapter {
   }
 
   public setBaseViewsDir(path: string | string[]) {
-    return this.set('views', path);
+    throw new Error('Not implemented');
   }
 
   public setViewEngine(engine: string) {
-    return this.set('view engine', engine);
+    throw new Error('Not implemented');
   }
 
   public getRequestHostname(req: any) {
@@ -167,9 +171,9 @@ export class RestanaHttpAdapter extends AbstractHttpAdapter {
       this.httpServer = http.createServer(this.getInstance());
     }
 
-    // if (options?.forceCloseConnections) {
-    //   this.trackOpenConnections()
-    // }
+    if (options?.forceCloseConnections) {
+      this.trackOpenConnections();
+    }
   }
 
   private trackOpenConnections() {
@@ -203,7 +207,7 @@ export class RestanaHttpAdapter extends AbstractHttpAdapter {
   }
 
   getType(): string {
-    return 'tinyhttp';
+    return 'restana';
   }
 
   public setLocal(key: string, value: any) {
